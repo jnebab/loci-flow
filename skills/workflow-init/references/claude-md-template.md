@@ -32,6 +32,11 @@
 
 - graphify-out/ is machine-generated (and .claudeignore'd) — never read it
   directly; use `graphify query` / `graphify explain`.
+- Visual graph map: `/viz [target]` generates/opens the interactive
+  community visualization for a graphed target (graphify cluster-only +
+  `label --backend=claude-cli` under the hood). Offer it when the user asks
+  to "see" the codebase structure, communities, or how things connect;
+  >5000 nodes → suggest `graphify tree` instead.
 
 <!-- rtk-instructions v2 -->
 ## RTK (token-optimized command output)
