@@ -99,6 +99,11 @@ for the think/plan/build stages, and a visual plan-review tool such as
 - **`/compound`** — captures a verified learning (bug / decision / gotcha /
   pattern) as a ≤30-line markdown entry with mandatory root cause and
   verification, then places it in the graph.
+- **`/viz`** — generates and opens graphify's interactive community-graph
+  visualization (`graph.html`) for any graphed target: force-directed map,
+  community sidebar with toggles, LLM-named clusters (via the claude CLI —
+  no API key needed). Warns and offers the lighter `graphify tree` view
+  past ~5000 nodes.
 - **Reference templates** — CLAUDE.md loop-rules block, solutions README,
   rtk hook JSON.
 
