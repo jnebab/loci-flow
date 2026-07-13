@@ -1,0 +1,14 @@
+{
+  "name": "loci",
+  "owner": {
+    "name": "John Carl Nebab",
+    "url": "https://github.com/jnebab"
+  },
+  "plugins": [
+    {
+      "name": "loci",
+      "source": "./",
+      "description": "A memory palace for your codebase: graph recall, compressed shell output, verified learning capture."
+    }
+  ]
+}

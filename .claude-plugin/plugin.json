@@ -1,0 +1,20 @@
+{
+  "name": "loci",
+  "version": "1.0.0",
+  "description": "A memory palace for your codebase: budget-capped knowledge-graph recall (graphify), compressed shell output (rtk), and verified learning capture. Every task makes the next one cheaper.",
+  "author": {
+    "name": "John Carl Nebab",
+    "url": "https://github.com/jnebab"
+  },
+  "repository": "https://github.com/jnebab/loci",
+  "license": "MIT",
+  "keywords": [
+    "workflow",
+    "memory-palace",
+    "token-efficiency",
+    "knowledge-graph",
+    "compound-engineering",
+    "rtk",
+    "graphify"
+  ]
+}
