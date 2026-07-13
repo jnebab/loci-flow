@@ -12,10 +12,16 @@
 2. **Think → plan → build** per your skill routing: brainstorming for
    features, systematic-debugging for bugs, writing-plans for multi-step
    work, and a visual review of plans before execution.
-3. **Compound last.** After solving anything non-obvious, run /compound.
+3. **Visual when visual.** Whenever the user asks to explain, visualize,
+   compare, or walk through something — or the answer is easier grasped
+   as a diagram/table/comparison than prose — render it as an interactive
+   HTML artifact via lavish (`npx -y lavish-axi <file>`), then poll for
+   annotations. Applies to plan reviews (step 2) and standalone
+   explanations alike; don't answer in prose what's clearer drawn.
+4. **Compound last.** After solving anything non-obvious, run /compound.
    Learnings live in docs/solutions/{bug,decision,gotcha,pattern}/ — check
    there before re-debugging anything.
-4. **Map after compounding.** After /compound writes or updates an entry,
+5. **Map after compounding.** After /compound writes or updates an entry,
    re-run the docs semantic pass (extraction cache skips unchanged files;
    working dir graphify-out/targets/docs-solutions), then remerge:
    `graphify merge-graphs graphify-out/targets/*/graphify-out/graph.json --out graphify-out/graph.json`

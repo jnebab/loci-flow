@@ -16,7 +16,15 @@ flowchart TD
     E --> C["5 · COMPOUND<br/>/compound → docs/solutions/*.md<br/>(verified lessons only)"]
     C --> G["6 · MAP<br/>semantic pass + merge-graphs<br/>→ a new room in the palace"]
     G -.->|"next task starts smarter"| R
+    R -. "user asks to explain /<br/>visualize / compare anything" .-> V["VISUAL EXPLAIN<br/>lavish (axi) — interactive HTML<br/>artifact, annotate + feedback loop"]
+    V -.-> C
 ```
+
+Two cross-cutting branches ride alongside the numbered loop: **rtk**
+compresses every shell call in every stage, and **lavish** fires whenever
+something is easier shown than told — plan reviews at stage 3, but equally a
+mid-task "explain this architecture to me" — rendering an interactive,
+annotatable HTML artifact whose feedback flows straight back into the session.
 
 ## Why
 

@@ -31,8 +31,11 @@ reference them but do not require them.
 
 1. **CLAUDE.md** — append the loop rules from
    `${CLAUDE_PLUGIN_ROOT}/skills/workflow-init/references/claude-md-template.md`
-   (append if the file exists — NEVER overwrite; adjust the plan-review line
-   to whatever visual-review tool the user has, e.g. lavish).
+   (append if the file exists — NEVER overwrite). The template routes both
+   plan reviews AND user-requested visual explanations (diagrams,
+   comparisons, walkthroughs) through lavish (`npx -y lavish-axi`); if the
+   user prefers a different visual tool, adjust the "Visual when visual"
+   rule to it.
 2. **docs/solutions/ scaffold** — create `{bug,decision,gotcha,pattern}/`
    subdirectories and copy
    `${CLAUDE_PLUGIN_ROOT}/skills/workflow-init/references/solutions-readme.md`
