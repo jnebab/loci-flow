@@ -123,7 +123,7 @@ just because they're popular.
 Then, in any project or workspace you want the loop:
 
 ```
-/workflow-init
+/init-loci
 ```
 
 The skill checks prerequisites, asks which code targets to graph, and wires
@@ -143,7 +143,7 @@ for the think/plan/build stages, and a visual plan-review tool such as
 
 ## What's in the box
 
-- **`/workflow-init`** — builds the palace in a project/workspace: loop rules
+- **`/init-loci`** — builds the palace in a project/workspace: loop rules
   in CLAUDE.md, `docs/solutions/` learning store, `.claudeignore`
   (prompt-cache protection), project-scoped rtk hook, per-target graphify
   graphs merged into one queryable workspace graph, and an end-to-end
@@ -172,7 +172,7 @@ for the think/plan/build stages, and a visual plan-review tool such as
   or every rebuild invalidates Claude Code's prompt cache and silently eats
   the savings.
 - **Installer overreach is reverted by design.** Both rtk's and graphify's
-  installers default to mutating global config; `/workflow-init` keeps
+  installers default to mutating global config; `/init-loci` keeps
   everything project-scoped and undoes what the installers globalize.
 - **Small fresh repos:** skip the graph until learnings accumulate
   (graphify's own benchmarks show ~1x payoff on tiny corpora) — the loop

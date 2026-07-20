@@ -1,13 +1,13 @@
 ---
-name: workflow-init
-description: Use when the user asks to set up the compounding token-efficient workflow (rtk + graphify + docs/solutions + loop rules) in a directory or repo — triggers on "/workflow-init", "set up the compound workflow here", "make this repo compound".
+name: init-loci
+description: Use when the user asks to set up the compounding token-efficient workflow (rtk + graphify + docs/solutions + loop rules) in a directory or repo — triggers on "/init-loci", "set up the compound workflow here", "make this repo compound".
 license: MIT
 metadata:
   author: jnebab
   version: "1.0"
 ---
 
-# Workflow Init
+# Init Loci
 
 Sets up the compounding loop in the current directory:
 
@@ -34,7 +34,7 @@ reference them but do not require them.
 ## Steps — confirm each with the user before writing
 
 1. **CLAUDE.md** — append the loop rules from
-   `${CLAUDE_PLUGIN_ROOT}/skills/workflow-init/references/claude-md-template.md`
+   `${CLAUDE_PLUGIN_ROOT}/skills/init-loci/references/claude-md-template.md`
    (append if the file exists — NEVER overwrite). The template routes both
    plan reviews AND user-requested visual explanations (diagrams,
    comparisons, walkthroughs) through lavish (`npx -y lavish-axi`); if the
@@ -42,13 +42,13 @@ reference them but do not require them.
    rule to it.
 2. **docs/solutions/ scaffold** — create `{bug,decision,gotcha,pattern}/`
    subdirectories and copy
-   `${CLAUDE_PLUGIN_ROOT}/skills/workflow-init/references/solutions-readme.md`
+   `${CLAUDE_PLUGIN_ROOT}/skills/init-loci/references/solutions-readme.md`
    to `docs/solutions/README.md`.
 3. **.claudeignore** — MUST contain `graphify-out/` BEFORE any extraction.
    Skipping this invalidates the prompt cache on every graph rebuild and
    silently erases the workflow's token savings.
 4. **rtk hook (project-scoped, NOT global)** — merge the contents of
-   `${CLAUDE_PLUGIN_ROOT}/skills/workflow-init/references/settings-hook.json`
+   `${CLAUDE_PLUGIN_ROOT}/skills/init-loci/references/settings-hook.json`
    into `.claude/settings.json` (create it if absent; if it exists, add the
    PreToolUse entry to the existing hooks). Do NOT run `rtk init -g` — it
    edits the user's global `~/.claude/settings.json`. Plain `rtk init` may

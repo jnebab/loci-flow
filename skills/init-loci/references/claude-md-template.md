@@ -17,7 +17,7 @@
    as a diagram/table/comparison than prose — ask one question: interactive
    HTML, or markdown? HTML → render via lavish (`npx -y lavish-axi <file>`),
    then poll for annotations. Markdown → apply the `i-have-adhd` skill if
-   installed, plus `${CLAUDE_PLUGIN_ROOT}/skills/workflow-init/references/markdown-output.md`
+   installed, plus `${CLAUDE_PLUGIN_ROOT}/skills/init-loci/references/markdown-output.md`
    (its rules alone carry this path if `i-have-adhd` isn't installed).
    Applies to plan reviews (step 2) and standalone explanations alike;
    don't answer in prose what's clearer drawn or structured.
