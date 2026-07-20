@@ -14,10 +14,13 @@
    work, and a visual review of plans before execution.
 3. **Visual when visual.** Whenever the user asks to explain, visualize,
    compare, or walk through something — or the answer is easier grasped
-   as a diagram/table/comparison than prose — render it as an interactive
-   HTML artifact via lavish (`npx -y lavish-axi <file>`), then poll for
-   annotations. Applies to plan reviews (step 2) and standalone
-   explanations alike; don't answer in prose what's clearer drawn.
+   as a diagram/table/comparison than prose — ask one question: interactive
+   HTML, or markdown? HTML → render via lavish (`npx -y lavish-axi <file>`),
+   then poll for annotations. Markdown → apply the `i-have-adhd` skill if
+   installed, plus `${CLAUDE_PLUGIN_ROOT}/skills/workflow-init/references/markdown-output.md`
+   (its rules alone carry this path if `i-have-adhd` isn't installed).
+   Applies to plan reviews (step 2) and standalone explanations alike;
+   don't answer in prose what's clearer drawn or structured.
 4. **Compound last.** After solving anything non-obvious, run /compound.
    Learnings live in docs/solutions/{bug,decision,gotcha,pattern}/ — check
    there before re-debugging anything.
@@ -27,6 +30,12 @@
    `graphify merge-graphs graphify-out/targets/*/graphify-out/graph.json --out graphify-out/graph.json`
    After code changes in a graphed repo: `graphify update <repo>` (free,
    no LLM), then the same remerge.
+6. **Handoff closes the loop.** After a task or bugfix is verified
+   complete (steps 4–5 done if the session produced a learning), run
+   `/handoff` to record real gate output, real commit hash, and what's
+   next for the following session. Also runnable manually anytime the
+   user wants to wrap up or leave a note ("wrap up", "leave a note for
+   next time") — it does not require compound/map to have run first.
 
 ## Workspace facts
 
