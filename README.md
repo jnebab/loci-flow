@@ -20,8 +20,9 @@ it. But the memory is one stage of six; the product is the whole loop.
 | 4 · Build | TDD, verification-before-completion, model routing | your process skills |
 | 5 · Compound | Verified learnings (root cause + proof) captured to `docs/solutions/` | `/compound` (bundled) |
 | 6 · Map | Learnings + code folded into the graph the next task recalls from | graphify |
+| 7 · Handoff | Real gate output + real commit hash + what's next, written for the next session | `/handoff` (bundled) |
 | ⚡ everywhere | Shell output compressed 60–90%, losslessly | rtk |
-| 👁 on demand | "Explain / visualize / compare this" → interactive annotatable artifact | lavish (axi) |
+| 👁 on demand | "Explain / visualize / compare this" → HTML artifact, or structured markdown | lavish (axi) or i-have-adhd |
 
 ```mermaid
 flowchart TD
@@ -31,9 +32,14 @@ flowchart TD
     P --> E["4 · BUILD<br/>TDD + verification<br/>(rtk compresses every shell call)"]
     E --> C["5 · COMPOUND<br/>/compound → docs/solutions/*.md<br/>(verified lessons only)"]
     C --> G["6 · MAP<br/>semantic pass + merge-graphs<br/>→ a new room in the palace"]
-    G -.->|"next task starts smarter"| R
-    R -. "user asks to explain /<br/>visualize / compare anything" .-> V["VISUAL EXPLAIN<br/>lavish (axi) — interactive HTML<br/>artifact, annotate + feedback loop"]
-    V -.-> C
+    G --> H["7 · HANDOFF<br/>/handoff → real gates + real hash<br/>+ what's next"]
+    H -.->|"next task starts smarter"| R
+    R -. "user asks to wrap up /<br/>leave a note anytime" .-> H
+    R -. "user asks to explain /<br/>visualize / compare anything" .-> V{"HTML or<br/>markdown?"}
+    V -->|"HTML"| VH["lavish (axi) — interactive<br/>artifact, annotate + feedback loop"]
+    V -->|"markdown"| VM["i-have-adhd (if installed)<br/>+ markdown-output guideline"]
+    VH -.-> C
+    VM -.-> C
 ```
 
 Two cross-cutting branches ride alongside the numbered loop: **rtk**
@@ -60,6 +66,52 @@ loci-flow wires both into one loop, with two hard rules that keep it honest:
 - **Only verified knowledge enters the palace.** Every captured learning
   requires a root cause and a Verification line with the real command +
   output. A guessed fix poisons every future session that recalls it.
+
+## Why this stack
+
+Every tool in the loop was picked for a specific job — none are bundled
+just because they're popular.
+
+- **Why [superpowers](https://github.com/obra/superpowers)** — process
+  discipline for the think/plan/build stages (brainstorming,
+  systematic-debugging, writing-plans, TDD, verification-before-completion).
+  Referenced, not required: loci-flow's stage table calls it "your process
+  skills" because any equivalent process skillset slots into the same stage.
+- **Why [rtk](https://github.com/rtk-ai/rtk)** — deterministic, lossless
+  compression of shell output (60–90% on git/test/lint) via a
+  project-scoped hook. No ML model rewrites your context; the same bytes
+  of information reach you in fewer tokens.
+- **Why [graphify](https://github.com/Graphify-Labs/graphify)** — the
+  cross-session memory. Recall is one budget-capped query instead of a
+  re-grep-and-re-read spree; code graphs are extracted locally
+  (tree-sitter, zero LLM tokens), so only `docs/solutions/` markdown ever
+  needs a semantic pass.
+- **Why [lavish (axi)](https://github.com/kunchenguid/lavish-axi)** — the
+  HTML branch of the visual-output choice. Interactive, annotatable
+  artifacts whose feedback flows back into the session — for plan reviews
+  and any explanation that's genuinely a diagram, comparison, or layout.
+- **Why [i-have-adhd](https://github.com/ayghri/i-have-adhd)** — the
+  markdown branch. Restructures output for directness (lead with the
+  action, numbered steps, no preamble/recap) when markdown is enough and
+  an HTML artifact would be overkill. Optional — the bundled
+  `markdown-output.md` guideline carries this path alone if it isn't
+  installed.
+
+## Considered, not used
+
+- **[caveman](https://github.com/JuliusBrussee/caveman)** — cuts ~65% of
+  *output* tokens by writing in compressed "caveman-speak." Rejected: it's
+  lossy register compression, and loci-flow's hard rule is no lossy
+  compression anywhere in the loop — handoffs, learnings, and PR text all
+  have to stay human-trustworthy verbatim, not reconstructed from a
+  compressed register. rtk is the lossless answer to the same cost
+  problem, applied to shell output instead of prose.
+- **[headroom](https://github.com/headroomlabs-ai/headroom)** — compresses
+  tool outputs, logs, and JSON before they reach the model. Not adopted:
+  it overlaps rtk's job in this loop, and running both would compress the
+  same stream twice for no additional saving. Worth revisiting only if
+  JSON-heavy MCP tool output becomes a dominant cost that rtk's
+  command-output focus doesn't reach.
 
 ## Install
 
