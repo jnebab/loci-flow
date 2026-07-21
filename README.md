@@ -10,28 +10,28 @@ way through.
 The *loci* half of the name is the ancient *method of loci* — the memory palace — because
 that's the mechanic that makes the loop compound: every verified learning is
 placed at a node in a knowledge graph, and every new task starts by walking
-it. But the memory is one stage of six; the product is the whole loop.
+it. But the memory is one stage of seven; the product is the whole loop.
 
 | Stage | What happens | Powered by |
 |---|---|---|
-| 1 · Recall | One budget-capped graph query answers "have we seen this before, and what code is involved?" | graphify |
+| 1 · Recall | `/recall` (bundled) — one budget-capped graph query answers "have we seen this before, and what code is involved?" | graphify |
 | 2 · Think | Features get brainstormed to an approved design; bugs get root-caused before any fix | your process skills (e.g. superpowers) |
 | 3 · Plan + Review | Written plan, rendered as an interactive HTML artifact you annotate; feedback flows back automatically | writing-plans + lavish (axi) |
 | 4 · Build | TDD, verification-before-completion, model routing | your process skills |
 | 5 · Compound | Verified learnings (root cause + proof) captured to `docs/solutions/` | `/compound` (bundled) |
-| 6 · Map | Learnings + code folded into the graph the next task recalls from | graphify |
+| 6 · Map | `/graphify --update` folds changed learnings + code into the one merged graph the next task recalls from | graphify |
 | 7 · Handoff | Real gate output + real commit hash + what's next, written for the next session | `/handoff` (bundled) |
 | ⚡ everywhere | Shell output compressed 60–90%, losslessly | rtk |
 | 👁 on demand | "Explain / visualize / compare this" → HTML artifact, or structured markdown | lavish (axi) or i-have-adhd |
 
 ```mermaid
 flowchart TD
-    T(["Task arrives<br/>(feature or bug)"]) --> R["1 · RECALL<br/>graphify query — budget-capped<br/>walk of past learnings + code map"]
+    T(["Task arrives<br/>(feature or bug)"]) --> R["1 · RECALL<br/>/recall — budget-capped<br/>walk of past learnings + code map"]
     R --> TH["2 · THINK<br/>brainstorm features /<br/>root-cause bugs"]
     TH --> P["3 · PLAN + REVIEW<br/>written plan,<br/>visually reviewed"]
     P --> E["4 · BUILD<br/>TDD + verification<br/>(rtk compresses every shell call)"]
     E --> C["5 · COMPOUND<br/>/compound → docs/solutions/*.md<br/>(verified lessons only)"]
-    C --> G["6 · MAP<br/>semantic pass + merge-graphs<br/>→ a new room in the palace"]
+    C --> G["6 · MAP<br/>/graphify --update<br/>→ a new room in the palace"]
     G --> H["7 · HANDOFF<br/>/handoff → real gates + real hash<br/>+ what's next"]
     H -.->|"next task starts smarter"| R
     R -. "user asks to wrap up /<br/>leave a note anytime" .-> H
@@ -152,6 +152,11 @@ for the think/plan/build stages, and a visual plan-review tool such as
 - **`/compound`** — captures a verified learning (bug / decision / gotcha /
   pattern) as a ≤30-line markdown entry with mandatory root cause and
   verification, then places it in the graph.
+- **`/recall`** — the read path: one budget-capped graph query over
+  learnings + code, cross-linked. Thin by design (~30 lines) so recall
+  never pays the full graphify skill load.
+- **`/handoff`** — session close-out: real gate output, real commit
+  hash, what's next — written for the next session.
 - **Reference templates** — CLAUDE.md loop-rules block, solutions README,
   rtk hook JSON.
 
@@ -162,7 +167,12 @@ for the think/plan/build stages, and a visual plan-review tool such as
   **local Ollama by default** (free, on-device, nothing leaves the machine);
   Claude or Gemini API keys as cloud alternatives. Always an explicit
   `--backend` — graphify's auto-detect silently uses whatever key is in
-  the env.
+  the env. Inside Claude Code, the graphify skill's subagent path needs
+  no key at all — the session's own model does the semantic pass.
+- **The graph is visual too.** The skill build emits `graph.html` — a
+  self-contained interactive map of docs + code in one graph (the
+  learnings visibly wired to the code they reference); `graphify tree`
+  gives a collapsible tree view. Both local, no LLM.
 - **Graphs live under `graphify-out/targets/<name>` and merge** via
   `graphify merge-graphs` into one workspace graph — repos stay clean of
   generated files.

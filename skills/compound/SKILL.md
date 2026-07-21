@@ -34,7 +34,9 @@ tags: [<searchable terms>]
 ---
 **Problem:** <what broke / what was decided, one paragraph>
 **Root cause / rationale:** <the actual why — not the symptom>
-**Fix / outcome:** <what resolved it, with `file:line` refs>
+**Fix / outcome:** <what resolved it — name the repo-relative file path
+and backticked `symbol` it touches (this is what links the entry to code
+in the graph)>
 **Verification:** <the real command + output that proved it>
 ```
 
@@ -56,5 +58,9 @@ graph edges.
   root cause poisons future sessions.
 - Root cause, not symptom ("truncated Mach-O binary from interrupted
   unzip", not "render was broken").
+- Name the code: repo-relative path + backticked `symbol` (e.g.
+  `skills/init-loci/references/loci-usage.mjs` → `dedupeEntries`).
+  Node IDs are deterministic from path+symbol, so this line is what
+  lets the graph draw a doc→code `references` edge.
 - Skip trivia the codebase already documents. If it's derivable from the
   code in one look, it doesn't belong here.
