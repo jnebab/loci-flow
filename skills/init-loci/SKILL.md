@@ -55,6 +55,19 @@ reference them but do not require them.
    also append a ~145-line command reference to CLAUDE.md; the template's
    compact RTK section replaces that, so skip `rtk init` entirely.
    Verify: run `rtk git status` inside a repo, then `rtk gain`.
+4b. **Session usage meter (OPTIONAL — ask first, default no).** Ask: "add a
+   per-turn session usage meter? (a Stop hook — shows context depth + cost
+   after each turn)". Only if the user says yes: copy
+   `${CLAUDE_PLUGIN_ROOT}/skills/init-loci/references/loci-usage.mjs` to
+   `.claude/hooks/loci-usage.mjs`, and merge
+   `${CLAUDE_PLUGIN_ROOT}/skills/init-loci/references/stop-hook.json` into
+   `.claude/settings.json` (add the Stop entry to the existing hooks — never
+   overwrite the rtk PreToolUse entry from step 4). The meter is display-only
+   (never blocks); it reads the session transcript locally, zero dependencies.
+   To set a warning threshold, the user edits `CONTEXT_BUDGET_TOKENS` at the
+   top of the copied script (default 0 = pure display); `PRICES` there is a
+   dated per-model rate table they update as pricing changes. Skipping this
+   keeps the default install free of any per-turn hook.
 5. **graphify graphs** — ask the user which code targets to graph (never
    extract everything unprompted). Then per target:
    `graphify extract <target> --code-only --out graphify-out/targets/<name>`

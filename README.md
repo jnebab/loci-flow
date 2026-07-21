@@ -183,6 +183,14 @@ for the think/plan/build stages, and a visual plan-review tool such as
 - `rtk gain` — real measured token savings from shell compression.
 - `graphify query "<topic>" --budget 2000` — recall in one capped call;
   compare against what the equivalent grep + file-reading spree would cost.
+- **Optional session usage meter** — `/init-loci` can install a zero-dependency
+  Stop hook (default **off**, opt-in) that prints one line after each turn:
+  current context depth in tokens plus cumulative session cost in dollars,
+  read straight from the session transcript. Set `CONTEXT_BUDGET_TOKENS` in the
+  copied `.claude/hooks/loci-usage.mjs` and it adds a wrap-up warning once the
+  context crosses that threshold — display only, it never blocks or stops.
+  It's a gauge, not a loop stage; the default install stays hook-free, honoring
+  the no-per-turn-tax rule.
 
 ## License
 
